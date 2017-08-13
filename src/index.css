@@ -79,3 +79,7 @@ textarea {
 #synopsis {
   height: 80px;
 }
+
+#warning {
+  color: red;
+}
