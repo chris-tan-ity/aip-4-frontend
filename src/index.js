@@ -11,6 +11,7 @@ class Review extends React.Component {
     this.handleSaveClick = this.handleSaveClick.bind(this);
     this.state = {
       isEditing: false,
+      warning: "",
       movie: {},
     }
   }
@@ -45,10 +46,6 @@ class Review extends React.Component {
     });
   }
 
-  saveReview(ev) {
-   console.log("save review")
-  }
-
   handleEditClick() {
     this.setState({isEditing: true});
   }
@@ -71,7 +68,7 @@ class Review extends React.Component {
     }
 
     if (empty_flag) {
-      alert("Please fill in all fields");
+      this.setState({warning: "Warning: Please fill in all fields"});
     } else {
       const delParams = {
         query: { review: "review" }
@@ -88,6 +85,7 @@ class Review extends React.Component {
       client.service('test').create(movie);
 
       this.setState({movie});
+      this.setState({warning: ""});
       this.setState({isEditing: false});
     } 
   }
@@ -114,14 +112,12 @@ class Review extends React.Component {
 	    <span id="title1">AIP Movie Review</span>
 	  </div>
         </div>
-        <form onSubmit={this.saveReview.bind(this)}>
-          <div id="content">
-            <table>   
-              {content}
-            </table>
-            {button}
-          </div>
-        </form>
+        <div id="content">
+          <table>   
+            {content}
+          </table>
+          {button} <span id="warning" >{this.state.warning}</span>
+        </div>
       </div>
     );
   }
@@ -129,7 +125,7 @@ class Review extends React.Component {
 
 function SaveButton(props) {
   return (
-    <button onClick={props.onClick} type="submit">
+    <button onClick={props.onClick}>
       Save
     </button>
   );
