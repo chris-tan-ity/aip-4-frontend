@@ -9,6 +9,7 @@ class Review extends React.Component {
      
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleSaveClick = this.handleSaveClick.bind(this);
+    this.handleCancelClick = this.handleCancelClick.bind(this);
     this.state = {
       isEditing: false,
       warning: "",
@@ -50,6 +51,10 @@ class Review extends React.Component {
     this.setState({isEditing: true});
   }
 
+  handleCancelClick() {
+    this.setState({isEditing: false});
+  }
+
   handleSaveClick(event) {
     const title = document.body.querySelector('[name="title"]');
     const date = document.body.querySelector('[name="date"]');
@@ -77,6 +82,7 @@ class Review extends React.Component {
       this.setState({movie: {}});
   
       let movie = {};
+      movie.review = "review"
       movie.title = title.value;
       movie.date = date.value;
       movie.duration = duration.value;
@@ -97,9 +103,11 @@ class Review extends React.Component {
 
     let content = null;
     let button = null;
+    let cancel = null;
     if (isEditing) {
       content = <EditReview movie={this.state.movie} />;
       button = <SaveButton onClick={this.handleSaveClick} />;
+      cancel = <button onClick={this.handleCancelClick} >Cancel</button>
     } else {
       content = <ViewReview movie={this.state.movie} />;
       button = <EditButton onClick={this.handleEditClick} />;
@@ -116,7 +124,7 @@ class Review extends React.Component {
           <table>   
             {content}
           </table>
-          {button} <span id="warning" >{this.state.warning}</span>
+          {button}{cancel}<span id="warning" >{this.state.warning}</span>
         </div>
       </div>
     );
