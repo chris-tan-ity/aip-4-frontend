@@ -5455,6 +5455,10 @@ react-scripts@1.0.11:
   optionalDependencies:
     fsevents "1.1.2"
 
+react-validator@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-validator/-/react-validator-0.1.0.tgz#4c2b570274a8cfcf2f3b00fe8d5859718602ec50"
+
 react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"

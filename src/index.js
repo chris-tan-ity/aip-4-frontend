@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import client from './feathers';
+import Validation from 'react-validation'
 
 class Review extends React.Component {
   constructor(props) {
@@ -121,10 +122,12 @@ class Review extends React.Component {
 	  </div>
         </div>
         <div id="content">
-          <table>   
-            {content}
-          </table>
-          {button}{cancel}<span id="warning" >{this.state.warning}</span>
+	  <Validation.components.Form>
+            <table>   
+              {content}
+            </table>
+            {button}{cancel}<span id="warning" >{this.state.warning}</span>
+	  </Validation.components.Form>
         </div>
       </div>
     );
@@ -179,7 +182,7 @@ function EditReview(props) {
     <tbody>
       <tr>
 	<td className="label">Title</td>
-        <td><input type="text" name="title" /></td>
+        <td><Validation.components.Input type='text' value='' name='title' validations={['required']}/> </td>
       </tr>
       <tr>
 	<td className="label">Release Date</td>
